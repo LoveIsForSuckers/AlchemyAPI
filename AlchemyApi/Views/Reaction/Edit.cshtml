@@ -1,0 +1,29 @@
+﻿@model AlchemyApi.Models.Alchemy.ReactionLibItem
+@{
+    ViewBag.Title = "Edit reaction";
+}
+
+<h2>Edit reaction</h2>
+
+@using (@Html.BeginForm())
+{
+    @Html.ValidationSummary(true);
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <p>
+            Исходный реагент 1<br />
+            @Html.DropDownListFor(model => model.FirstSourceReagentLibItemId, ViewBag.Reagents as SelectList)
+        </p>
+        <p>
+            Исходный реагент 2<br />
+            @Html.DropDownListFor(model => model.SecondSourceReagentLibItemId, ViewBag.Reagents as SelectList)
+        </p>
+        <p>
+            Результат реакции<br />
+            @Html.DropDownListFor(model => model.ResultReagentLibItemId, ViewBag.Reagents as SelectList)
+        </p>
+    </fieldset>
+
+    <input type="submit" value="Сохранить" />
+}
+

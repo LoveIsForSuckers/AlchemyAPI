@@ -1,0 +1,35 @@
+﻿@model AlchemyApi.Models.Alchemy.ReagentLibItem
+@{
+    ViewBag.Title = "Создание реагента";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New reagent</h2>
+
+@using (@Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(m => m.Title, "Название")
+    <br />
+    @Html.EditorFor(m => m.Title)
+    @Html.ValidationMessageFor(m => m.Title)
+    <br /><br />
+    @Html.LabelFor(m => m.Red, "Красный")
+    <br />
+    @Html.EditorFor(m => m.Red)
+    @Html.ValidationMessageFor(m => m.Red)
+    <br /><br />
+    @Html.LabelFor(m => m.Green, "Зеленый")
+    <br />
+    @Html.EditorFor(m => m.Green)
+    @Html.ValidationMessageFor(m => m.Green)
+    <br /><br />
+    @Html.LabelFor(m => m.Blue, "Синий")
+    <br />
+    @Html.EditorFor(m => m.Blue)
+    @Html.ValidationMessageFor(m => m.Blue)
+    <br /><br />
+    <input type="submit" value="Добавить" />
+}
+

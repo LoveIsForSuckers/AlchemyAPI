@@ -1,0 +1,53 @@
+﻿@model AlchemyApi.Models.Alchemy.ReagentLibItem
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Удаление reagenta</h2>
+
+<div class="container">
+    @Html.AntiForgeryToken()
+    <div class="left" style="float:left; width:30%">
+        <h3>Название</h3><br />
+        @Html.DisplayFor(model => model.Title)
+    </div>
+    <div class="right" style="float:right; width:70%">
+        <h3>Известные реакции</h3><br />
+        <div>
+            <b>Исходный реагент в реакциях:</b><br />
+            @if (Model.FirstSourceReactions.Count == 0 && Model.SecondSourceReactions.Count == 0)
+            {
+                @Html.Raw("Нет")
+            }
+            @foreach(var item in Model.FirstSourceReactions)
+            {
+                @item.GetFullString()
+            }
+            @foreach (var item in Model.SecondSourceReactions)
+            {
+                @item.GetFullString()
+            }
+        </div>
+        <div>
+            <b>Результат реакций:</b><br />
+            @if (Model.ResultReactions.Count == 0)
+            {
+                @Html.Raw("Нет")
+            }
+            @foreach (var item in Model.ResultReactions)
+            {
+                @item.GetFullString()
+            }
+        </div>
+        <div>
+            <br /><br />
+            Все связанные реакции будут удалены при удалении реагента.
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Удалить" />
+}
+

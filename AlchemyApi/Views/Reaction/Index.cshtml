@@ -1,0 +1,23 @@
+﻿@model IEnumerable<AlchemyApi.Models.Alchemy.ReactionLibItem>
+@{
+    ViewBag.Title = "Le Reactiones";
+}
+
+<h3>Known reactions</h3>
+<div class="reactionList">
+    <br />
+    @Html.ActionLink("Создать новую", "Create")
+    <br /><br />
+    @foreach (AlchemyApi.Models.Alchemy.ReactionLibItem item in Model)
+    {
+        <div>
+            <div style="float:left; width:auto;">@item.Id | </div>
+            <div style="float:left; width:auto;"> @item.GetFullString()</div>
+            <div style="float: right; width: auto;">
+                @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+            </div>
+            <div style="width:100%; height:24px; background-color:#E6E6FF; margin-bottom:4px;"></div>
+        </div>
+    }
+</div>

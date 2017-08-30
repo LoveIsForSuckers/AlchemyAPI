@@ -1,0 +1,19 @@
+﻿@model AlchemyApi.Models.Alchemy.ReactionLibItem
+@{
+    ViewBag.Title = "Delete reaction";
+}
+
+<h2>Delete reaction</h2>
+
+<dl>
+    <dt>Название</dt>
+    <dd>
+       @Html.AntiForgeryToken()
+       @Model.GetFullString()
+    </dd>
+</dl>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Удалить" />
+}

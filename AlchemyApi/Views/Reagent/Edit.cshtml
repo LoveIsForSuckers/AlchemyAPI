@@ -1,0 +1,75 @@
+﻿@model AlchemyApi.Models.Alchemy.ReagentLibItem
+@{
+    ViewBag.Title = "Редактирование реагента";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="left" style="float:left; width:30%">
+        <h3>Редактирование реагента</h3><br />
+        @using (Html.BeginForm("Edit", "Reagent", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            @Html.AntiForgeryToken()
+            <fieldset>
+                @Html.HiddenFor(m => m.Id)
+                <p>
+                    @Html.LabelFor(m => m.Title, "Название")
+                    <br />
+                    @Html.EditorFor(m => m.Title)
+                    @Html.ValidationMessageFor(m => m.Title)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Red, "Красный")
+                    <br />
+                    @Html.EditorFor(m => m.Red)
+                    @Html.ValidationMessageFor(m => m.Red)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Green, "Зеленый")
+                    <br />
+                    @Html.EditorFor(m => m.Green)
+                    @Html.ValidationMessageFor(m => m.Green)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Blue, "Синий")
+                    <br />
+                    @Html.EditorFor(m => m.Blue)
+                    @Html.ValidationMessageFor(m => m.Blue)
+                </p>
+            </fieldset>
+            <br /><br />
+            <input type="submit" value="Сохранить" />
+        }
+    </div>
+    <div class="right" style="float:right; width:70%">
+        <h3>Известные реакции</h3><br />
+        <div>
+            <b>Исходный реагент в реакциях:</b><br />
+            @if (Model.FirstSourceReactions.Count == 0 && Model.SecondSourceReactions.Count == 0)
+            {
+                @Html.Raw("Нет");
+            }
+            @foreach (var item in Model.FirstSourceReactions)
+            {
+                @item.GetFullString()
+            }
+            @foreach (var item in Model.SecondSourceReactions)
+            {
+                @item.GetFullString()
+            }
+        </div>
+        <div>
+            <b>Результат реакций:</b><br />
+            @if (Model.ResultReactions.Count == 0)
+            {
+                @Html.Raw("Нет");
+            }
+            @foreach (var item in Model.ResultReactions)
+            {
+                @item.GetFullString()
+            }
+        </div>
+    </div>
+</div>
+

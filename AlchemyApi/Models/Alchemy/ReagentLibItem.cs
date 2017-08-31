@@ -5,6 +5,7 @@ using System.Web;
 using System.Text;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace AlchemyApi.Models.Alchemy
 {
